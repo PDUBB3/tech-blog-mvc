@@ -1,29 +1,29 @@
 const { User } = require("../../models");
 
-const handleLogin = async (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
+const handleSignUp = async (req, res) => {
+  try {
+    const username = req.body.username;
+    const password = req.body.password;
 
-  const user = await User.findOne({
-    where: {
+    const user = await User.create({
       username: username,
-    },
-  });
+      password: password,
+    });
 
-  if (!user) {
-    console.log("User does not exists");
-    return res.status(401).json({ error: "Failed to login" });
+    if (!user) {
+      console.log("Failed to create user");
+      return res.status(500).json({ error: "Failed to signup" });
+    }
+
+    return res.status(200).json({ message: "success" });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({ error: "Failed to signup" });
   }
-
-  if (user.password !== password) {
-    console.log("Incorrect password");
-    return res.status(401).json({ error: "Failed to login" });
-  }
-
-  res.status(200).json({ message: "success" });
 };
 
-module.exports = handleLogin;
+module.exports = handleSignUp;
+
 // get data from post body
 // get the user
 // if exists validate password and if true then send response
