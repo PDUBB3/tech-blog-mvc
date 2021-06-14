@@ -61,4 +61,5 @@ const handlePostDelete = () => {
 };
 
 console.log("client-side JS");
-$("#loginForm").submit(handleLoginSubmit);
+$("#login-form").submit(handleLoginSubmit);
+$("#sign-up-form").submit(handleSignupSubmit);
