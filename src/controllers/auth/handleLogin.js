@@ -35,8 +35,3 @@ const handleLogin = async (req, res) => {
 };
 
 module.exports = handleLogin;
-
-// get data from post body
-// get the user
-// if exists validate password and if true then send response
-// not exist return 404
