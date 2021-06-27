@@ -99,7 +99,7 @@ npm run seed
 
 ![Tech blog blogs.](./public/assets/img/allposts.png)
 
-### Seeing all blogs logeed in as another user
+### Seeing all blogs logged in as another user
 
 ![Tech blog blogs.](./public/assets/img/aliceallpost.png)
 
