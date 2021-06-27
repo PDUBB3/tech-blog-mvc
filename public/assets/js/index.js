@@ -136,7 +136,7 @@ const handlePostSubmit = async (event) => {
   }
 };
 
-const handlePostDelete = (event) => {
+const handlePostDelete = async (event) => {
   const { id } = event.target;
 
   const options = {
