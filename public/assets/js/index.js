@@ -107,10 +107,33 @@ const handleCommentSubmit = async (event) => {
   }
 };
 
-const handlePostSubmit = () => {
-  // POST request with title and body
-  // /api/posts
-  // on success window location to /dashboard
+const handlePostSubmit = async (event) => {
+  event.preventDefault();
+
+  const title = $("#blog-title").val();
+  const body = $("#blog-content").val();
+
+  const requestBody = {
+    title,
+    body,
+  };
+
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    redirect: "follow",
+    body: JSON.stringify(requestBody),
+  };
+
+  const response = await fetch(`/api/posts`, options);
+
+  if (response.status === 200) {
+    window.location.replace("/dashboard");
+  } else {
+    console.log("Failed to create post");
+  }
 };
 
 const handlePostDelete = () => {
@@ -145,3 +168,4 @@ $("#sign-up-form").submit(handleSignupSubmit);
 $("#logout-btn").click(handleLogoutClick);
 $('[name="delete-comment-btn"]').click(handleCommentDelete);
 $('[name="comment-form"]').submit(handleCommentSubmit);
+$("#create-blog").submit(handlePostSubmit);
